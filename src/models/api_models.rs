@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use mongodb::bson::oid::ObjectId;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct ApiResponse<T> {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub msg: Option<String>,
@@ -49,14 +49,32 @@ pub struct LoginData {
     pub signature: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct JwtClaims {
-    pub wallet: String,
-    pub memberships: Vec<String>,
-    pub ownerships: Vec<String>
+    pub wallet: String
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct JwtResponse {
     pub jwt: String
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct Claims {
+    pub wallet: String,
+    pub exp: i64,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Code {
+    pub code: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct EmailSend {
+    pub receiver: String,
+    pub subject: String,
+    pub title: String,
+    pub code_type: String,
+    pub body: String
 }

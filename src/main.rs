@@ -2,12 +2,13 @@ use crate::orchestrator::orchestrator::Orchestrator;
 use actix_web::{middleware, web, App, HttpServer};
 use env_logger::Env;
 use tokio::sync::Mutex;
-use crate::api::{login, request_nonce};
 use actix_cors::Cors;
+use crate::api::api::{get_memberships, get_ownerships };
+use crate::api::auth_api::{get_session, login, logout, request_nonce};
+
 mod orchestrator;
 mod models;
 mod api;
-
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -24,13 +25,19 @@ async fn main() -> std::io::Result<()> {
             .app_data(state.clone())
             .wrap(middleware::Logger::default())
             .wrap(Cors::default()
-                    .allow_any_origin()
+                    .allowed_origin("http://localhost:3000")
                     .allow_any_header()
-                    .allow_any_method())
+                    .allow_any_method()
+                    .supports_credentials()
+            )
             .service(
                 web::scope("/api")
                     .service(login)
                     .service(request_nonce)
+                    .service(get_session)
+                    .service(get_ownerships)
+                    .service(get_memberships)
+                    .service(logout)
             )
     })
         .bind(("0.0.0.0", 8080))?
