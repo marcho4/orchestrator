@@ -10,8 +10,10 @@ use solana_sdk::pubkey::Pubkey;
 use solana_sdk::signature::Signature;
 use crate::orchestrator::orchestrator::Orchestrator;
 use crate::models::api_models::*;
+use crate::models::community::Community;
 use chrono::{Utc};
 use log::info;
+use crate::models::license::License;
 
 impl Orchestrator {
     fn verify_solana_signature(pubkey: &Pubkey, message: &[u8], signature: &Signature) -> bool {

@@ -3,7 +3,7 @@ use actix_web::{middleware, web, App, HttpServer};
 use env_logger::Env;
 use tokio::sync::Mutex;
 use actix_cors::Cors;
-use crate::api::api::{get_memberships, get_ownerships };
+use crate::api::api::{check_wallet, create_community, fetch_all_allowed_wallets, fetch_all_community_members, fetch_community_info, get_memberships, get_ownerships};
 use crate::api::auth_api::{get_session, login, logout, request_nonce};
 
 mod orchestrator;
@@ -38,6 +38,11 @@ async fn main() -> std::io::Result<()> {
                     .service(get_ownerships)
                     .service(get_memberships)
                     .service(logout)
+                    .service(create_community)
+                    .service(fetch_community_info)
+                    .service(check_wallet)
+                    .service(fetch_all_community_members)
+                    .service(fetch_all_allowed_wallets)
             )
     })
         .bind(("0.0.0.0", 8080))?

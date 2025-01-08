@@ -7,7 +7,7 @@ pub struct Orchestrator {
 impl Orchestrator {
     pub fn new() -> Orchestrator {
         let redis = RedisClient::open("redis://redis:6379").unwrap();
-        let con = redis.get_connection().unwrap();
+        let con = redis.get_connection().expect("Failed to connect to Redis");
 
         Orchestrator {
             client: Client::new(),

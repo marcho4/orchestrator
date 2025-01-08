@@ -1,2 +1,3 @@
 pub mod api_models;
-mod community;
+pub mod community;
+pub mod license;
