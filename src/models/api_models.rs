@@ -36,6 +36,11 @@ pub struct Code {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
+pub struct Wallets {
+    pub wallets: Vec<String>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct EmailSend {
     pub receiver: String,
     pub subject: String,
