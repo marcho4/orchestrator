@@ -13,6 +13,7 @@ use crate::api::get_members::fetch_all_community_members;
 use crate::api::get_memberships::get_memberships;
 use crate::api::get_ownerships::get_ownerships;
 use crate::api::get_wallets::fetch_all_allowed_wallets;
+use crate::api::remove_wallet_from_wl::remove_wallet_from_wl;
 use crate::api::update_community_data::update_community_data;
 
 mod orchestrator;
@@ -55,6 +56,7 @@ async fn main() -> std::io::Result<()> {
                     .service(add_wallets_to_wl)
                     .service(generate_transaction)
                     .service(update_community_data)
+                    .service(remove_wallet_from_wl)
             )
     })
         .bind(("0.0.0.0", 8080))?
