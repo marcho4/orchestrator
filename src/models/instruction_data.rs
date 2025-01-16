@@ -5,5 +5,6 @@ pub struct InstructionData {
     pub amount: u64,
     pub sender: String,
     pub receiver: String,
-    pub token: Token
+    pub token: Token,
+    pub api_name: String
 }

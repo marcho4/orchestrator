@@ -1,4 +1,4 @@
-use actix_web::{get, post, web, HttpResponse, Result as ActixResult};
+use actix_web::{ post, web, HttpResponse, Result as ActixResult};
 use actix_web::error::ErrorInternalServerError;
 use log::info;
 use tokio::sync::Mutex;
