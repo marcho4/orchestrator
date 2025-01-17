@@ -12,3 +12,4 @@ pub mod get_community_data;
 pub mod remove_wallet_from_wl;
 pub mod process_payment;
 pub mod routes;
+pub mod middleware;

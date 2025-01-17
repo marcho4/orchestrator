@@ -4,6 +4,7 @@ use actix_web::{middleware, web, App, HttpServer};
 use env_logger::Env;
 use tokio::sync::Mutex;
 use actix_cors::Cors;
+use crate::api::middleware::AuthMiddleware;
 
 mod orchestrator;
 mod models;
@@ -23,6 +24,7 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .app_data(state.clone())
             .wrap(middleware::Logger::default())
+            .wrap(AuthMiddleware::new())
             .wrap(Cors::default()
                     .allowed_origin("http://localhost:3000")
                     .allow_any_header()

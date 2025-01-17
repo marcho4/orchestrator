@@ -6,3 +6,4 @@ pub mod instruction_data;
 pub mod serialized_instruction;
 pub mod update_community_data;
 pub mod payment_details;
+pub mod user_info;

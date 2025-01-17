@@ -128,7 +128,6 @@ impl Orchestrator {
         let jwt_data = JwtResponse {jwt};
 
         let request = self.client.post(jwt_url).json(&jwt_data);
-        info!("{:?}", request);
         let res = request.send().await;
 
         match res {
